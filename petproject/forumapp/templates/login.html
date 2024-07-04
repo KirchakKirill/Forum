@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href= "{% static 'forumapp/css/style.css' %}">
+</head>
+<body>
+<div class="wrapper">
+    <form action="{% url 'login' %}"  method ="post">
+        <h1>Login</h1>
+        {% csrf_token %}
+        {% for field, error in form.errors.items %}
+        <p style="font-family: Montserrat sans-serif; font-size: 18px; text-indent: 10px;">{{ error | striptags }}</p>
+        {% endfor %}
+        {% for f in form %}
+        <div class="input-box">
+        {{f}}
+        </div>
+        {%endfor%}
+
+        <div class="remember">
+            <label for="input-check" ><input id="input-check" class="check" type="checkbox" name="input-check"> Remember me </label>
+            <a href="#">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+
+        <div class="registry-link">
+            <p>Are you haven`t account? </p> <a href="{% url 'registration' %}">Registry</a>
+        </div>
+
+
+    </form>
+</div>
+
+</body>
+</html>
